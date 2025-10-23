@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnosa - Pakar Padi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-green-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-green-700 rounded-full flex items-center justify-center">
+                        <i class="fas fa-seedling text-white text-lg"></i>
+                    </div>
+                    <span class="text-xl font-bold text-green-800">Pakar Padi</span>
+                </div>
+                
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="px-4 py-2 rounded-md hover:bg-green-100 text-green-800 font-medium transition">Home</a>
+                    <a href="about.html" class="px-4 py-2 rounded-md hover:bg-green-100 text-green-800 font-medium transition">Tentang</a>
+                    <a href="#" class="px-4 py-2 rounded-md hover:bg-green-100 text-green-800 font-medium transition bg-green-100 border-b-2 border-green-700">Diagnosa</a>
+                    <a href="riwayat.html" class="px-4 py-2 rounded-md hover:bg-green-100 text-green-800 font-medium transition">Riwayat</a>
+                    <a href="kontak.html" class="px-4 py-2 rounded-md hover:bg-green-100 text-green-800 font-medium transition">Kontak</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-md flex items-center space-x-2 transition">
+                        <i class="fas fa-user text-sm"></i>
+                        <span>Login</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <h1 class="text-4xl font-bold text-green-800 mb-2">Mulai Diagnosa Penyakit Tanaman Padi Anda</h1>
+                <p class="text-gray-600">Gunakan dua metode cerdas – Forward Chaining dan Certainty Factor – untuk mengenali gejala penyakit secara akurat.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <!-- Diagnosa Berdasarkan Gejala -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-green-200 cursor-pointer" onclick="window.location.href='gejala.html'">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-12 h-12 bg-green-700 rounded-full flex items-center justify-center">
+                            <i class="fas fa-brain text-white text-xl"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-green-800">Diagnosa Berdasarkan Gejala</h2>
+                    </div>
+                    <p class="text-gray-700">Pilih gejala yang muncul di tanaman untuk mengetahui penyakit yang mungkin menyerang.</p>
+                </div>
+                
+                <!-- Diagnosa Berdasarkan Gambar -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border-2 border-green-700 cursor-pointer" id="diagnosa-gambar-btn">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-camera text-white text-xl"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-green-800">Diagnosa Berdasarkan Gambar</h2>
+                    </div>
+                    <p class="text-gray-700">Unggah foto daun atau batang tanaman, lalu jawab pertanyaan tingkat keyakinan Anda.</p>
+                </div>
+            </div>
+            
+            <!-- Diagnosa Berdasarkan Gambar Section (Initially Hidden) -->
+            <div id="diagnosa-gambar-section" class="bg-white p-6 rounded-xl shadow-lg mb-8 hidden">
+                <h2 class="text-xl font-bold text-green-800 mb-4">Diagnosa Berdasarkan Gambar</h2>
+                
+                <!-- Upload Area -->
+                <div id="upload-area" class="border-2 border-dashed border-green-500 rounded-xl p-8 text-center mb-6 cursor-pointer">
+                    <div class="w-16 h-16 bg-green-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-camera text-white text-xl"></i>
+                    </div>
+                    <p class="text-green-800 font-medium mb-2">Seret atau pilih gambar daun/batang tanaman padi</p>
+                    <p class="text-sm text-gray-500">Format: JPG, PNG, maksimal 10MB</p>
+                    <input type="file" accept=".jpg,.jpeg,.png" multiple class="hidden" id="image-upload">
+                </div>
+                
+                <!-- Image Preview Container (Initially Hidden) -->
+                <div id="image-preview-container" class="mb-6 hidden">
+                    <div class="flex flex-wrap gap-4">
+                        <!-- Image previews will be added here dynamically -->
+                    </div>
+                </div>
+                
+                <!-- Questions Section (Initially Hidden) -->
+                <div id="questions-section" class="bg-gray-50 rounded-xl p-4 hidden">
+                    <!-- Question 1 -->
+                    <div class="mb-4 question-container" data-question="1">
+                        <h3 class="font-bold text-green-800 mb-3">Pertanyaan 1 dari 3</h3>
+                        <p class="text-gray-700 mb-4">Apakah daun tampak menguning di bagian tepi?</p>
+                        
+                        <div class="flex flex-wrap gap-3">
+                            <button class="question-btn px-4 py-2 bg-white text-green-800 border border-green-700 rounded-lg font-medium">Tidak Ada</button>
+                            <button class="question-btn px-4 py-2 bg-white text-green-800 border border-green-700 rounded-lg font-medium">Mungkin</button>
+                            <button class="question-btn px-4 py-2 bg-white text-green-800 border border-green-700 rounded-lg font-medium">Kemungkinan Besar</button>
+                            <button class="question-btn px-4 py-2 bg-white text-green-800 border border-green-700 rounded-lg font-medium">Hampir Pasti</button>
+                            <button class="question-btn px-4 py-2 bg-white text-green-800 border border-green-700 rounded-lg font-medium">Pasti</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 2 -->
+                    <div class="mb-4 question-container hidden" data-question="2">
+                        <h3 class="font-bold text-green-800 mb-3">Pertanyaan 2 dari 3</h3>
+                        <p class="text-gray-700 mb-4">Seberapa jelas bercak coklat terlihat pada daun?</p>
+                        
+                        <div class="flex flex-wrap gap-3">
+                            <button class="question-btn px-4 py-2 bg-white text-green-800 border border-green-700 rounded-lg font-medium">Tidak Ada</button>
+                            <button class="question-btn px-4 py-2 bg-white text-green-800 border border-green-700 rounded-lg font-medium">Mungkin</button>
+                            <button class="question-btn px-4 py-2 bg-white text-green-800 border border-green-700 rounded-lg font-medium">Kemungkinan Besar</button>
+                            <button class="question-btn px-4 py-2 bg-white text-green-800 border border-green-700 rounded-lg font-medium">Hampir Pasti</button>
+                            <button class="question-btn px-4 py-2 bg-white text-green-800 border border-green-700 rounded-lg font-medium">Pasti</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 3 -->
+                    <div class="mb-4 question-container hidden" data-question="3">
+                        <h3 class="font-bold text-green-800 mb-3">Pertanyaan 3 dari 3</h3>
+                        <p class="text-gray-700 mb-4">Apakah batang terlihat busuk atau berbau?</p>
+                        
+                        <div class="flex flex-wrap gap-3">
+                            <button class="question-btn px-4 py-2 bg-white text-green-800 border border-green-700 rounded-lg font-medium">Tidak Ada</button>
+                            <button class="question-btn px-4 py-2 bg-white text-green-800 border border-green-700 rounded-lg font-medium">Mungkin</button>
+                            <button class="question-btn px-4 py-2 bg-white text-green-800 border border-green-700 rounded-lg font-medium">Kemungkinan Besar</button>
+                            <button class="question-btn px-4 py-2 bg-white text-green-800 border border-green-700 rounded-lg font-medium">Hampir Pasti</button>
+                            <button class="question-btn px-4 py-2 bg-white text-green-800 border border-green-700 rounded-lg font-medium">Pasti</button>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between mt-6">
+                        <button id="prev-question" class="border-2 border-green-700 text-green-700 px-4 py-2 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                            <i class="fas fa-arrow-left mr-1"></i> Sebelumnya
+                        </button>
+                        <button id="next-question" class="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-lg font-medium">
+                            Selanjutnya <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Result Section (Initially Hidden) -->
+                <div id="result-section" class="bg-white rounded-xl shadow-lg p-6 hidden">
+                    <div class="flex items-center justify-center mb-6">
+                        <div class="w-12 h-12 bg-green-700 rounded-full flex items-center justify-center">
+                            <i class="fas fa-check text-white text-xl"></i>
+                        </div>
+                    </div>
+                    
+                    <h2 class="text-2xl font-bold text-green-800 text-center mb-4">Hasil Diagnosa</h2>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-green-800 mb-2">Hawar Daun Bakteri (Xanthomonas oryzae)</h3>
+                            <p class="text-gray-700 mb-4">Penyakit yang disebabkan oleh bakteri Xanthomonas oryzae yang menyerang daun tanaman padi.</p>
+                            
+                            <div class="bg-green-50 p-4 rounded-lg">
+                                <h4 class="font-bold text-green-800 mb-2">Solusi Penanganan</h4>
+                                <p class="text-gray-700">Gunakan bakterisida berbahan aktif oksitetrasiklin. Lakukan sanitasi lahan dan hindari genangan air berlebih.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col items-center justify-center">
+                            <div class="text-center mb-4">
+                                <div class="text-sm text-gray-600 mb-1">Tingkat Keyakinan</div>
+                                <div class="progress-circle mx-auto">
+                                    <div class="text-2xl font-bold text-green-800">94%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button id="save-to-history" class="bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded-lg font-medium flex items-center justify-center space-x-2">
+                            <i class="fas fa-save"></i>
+                            <span>Simpan ke Riwayat</span>
+                        </button>
+                        <button id="print-pdf" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-medium flex items-center justify-center space-x-2">
+                            <i class="fas fa-print"></i>
+                            <span>Cetak Hasil (PDF)</span>
+                        </button>
+                        <button id="retry-diagnosis" class="border-2 border-green-700 text-green-700 px-6 py-2 rounded-lg font-medium flex items-center justify-center space-x-2">
+                            <i class="fas fa-redo"></i>
+                            <span>Ulangi Diagnosa</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-green-800 text-white pt-8 pb-4">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-green-700 rounded-full flex items-center justify-center">
+                            <i class="fas fa-seedling text-white text-lg"></i>
+                        </div>
+                        <span class="text-xl font-bold">Pakar Padi</span>
+                    </div>
+                    <p class="text-sm text-green-200 mb-4">Sistem pakar diagnosis penyakit tanaman padi berbasis web menggunakan metode hybrid Forward Chaining dan Certainty Factor untuk membantu petani mendeteksi penyakit tanaman padi secara dini.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-green-200 hover:text-white">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-green-200 hover:text-white">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-green-200 hover:text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-green-200 hover:text-white">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Menu Utama</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-green-200 hover:text-white">Home</a></li>
+                        <li><a href="about.html" class="text-green-200 hover:text-white">Tentang</a></li>
+                        <li><a href="diagnosa.html" class="text-green-200 hover:text-white">Diagnosa</a></li>
+                        <li><a href="riwayat.html" class="text-green-200 hover:text-white">Riwayat</a></li>
+                        <li><a href="kontak.html" class="text-green-200 hover:text-white">Kontak</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Kontak</h3>
+                    <ul class="space-y-2 text-green-200">
+                        <li class="flex items-start space-x-2">
+                            <i class="fas fa-map-marker-alt mt-1"></i>
+                            <span>Universitas Muhammadiyah Sidoarjo</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <i class="fas fa-envelope mt-1"></i>
+                            <span>info@pakarpadi.com</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <i class="fas fa-phone mt-1"></i>
+                            <span>+62 123 456 789</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-green-700 mt-8 pt-4 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm text-green-200">© 2025 Muchammad Issom Agustian – Sistem Pakar Diagnosis Penyakit Tanaman Padi</p>
+                <p class="text-sm text-green-200 mt-4 md:mt-0">Powered by Readdy</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

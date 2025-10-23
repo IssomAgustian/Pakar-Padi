@@ -1,0 +1,477 @@
+/* ===================================
+   Pakar Padi - Custom Styles
+   =================================== */
+
+/* Hero Background */
+/* .hero-bg {
+    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                url('https://placehold.co/1920x800/3a7d44/ffffff?text=Rice+Fields') no-repeat center center;
+    background-size: cover;
+} */
+
+/* Navigation Active State */
+.nav-active {
+    background-color: #e0f7e0;
+    border-bottom: 3px solid #2e7d32;
+}
+
+/* Feature Card Hover Effect */
+.feature-card {
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Primary Button */
+.btn-primary {
+    background-color: #2e7d32;
+    color: white;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #1b5e20;
+    transform: translateY(-1px);
+}
+
+/* Outline Button */
+.btn-outline {
+    /* border: 2px solid #ff9800; */
+    background-color: #ff9800;
+    color: white;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+    background-color: #ff9800;
+    transform: translateY(-1px);
+}
+
+/* CTA Button */
+.btn-cta {
+    background-color: #ff9800;
+    color: white;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-cta:hover {
+    background-color: #fb8c00;
+    transform: translateY(-1px);
+}
+
+/* Section About */
+.section-about {
+    background-color: #f0f9f0;
+}
+
+/* Footer Background */
+.footer-bg {
+    background-color: #1b5e20;
+}
+
+/* Footer Link */
+.footer-link {
+    color: #e0f7e0;
+}
+
+.footer-link:hover {
+    color: white;
+}
+
+/* Gradient Background for Riwayat */
+.gradient-bg {
+    background: linear-gradient(135deg, #15803d 0%, #84cc16 50%, #fb923c 100%);
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    z-index: 10;
+    min-width: 160px;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+/* Progress Circle */
+.progress-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: conic-gradient(#2e7d32 0% 94%, #e0e0e0 94% 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.progress-circle::before {
+    content: '';
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: white;
+}
+
+.progress-circle div {
+    position: relative;
+    z-index: 1;
+}
+
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2e7d32;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #1b5e20;
+}
+
+/* Animation for Cards */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Symptom Card Styles */
+.symptom-card {
+    transition: all 0.3s ease;
+}
+
+.symptom-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Filter Button Active */
+.filter-btn {
+    transition: all 0.3s ease;
+}
+
+.filter-btn:active {
+    transform: scale(0.95);
+}
+
+/* Question Button */
+.question-btn {
+    transition: all 0.3s ease;
+}
+
+.question-btn:hover {
+    background-color: #e8f5e8;
+}
+
+.question-btn.active {
+    background-color: #2e7d32;
+    color: white;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    backdrop-filter: blur(4px);
+}
+
+/* Table Hover Effect */
+tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+/* Loading Spinner */
+.spinner {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #2e7d32;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Success Message Animation */
+@keyframes slideInDown {
+    from {
+        transform: translate(-50%, -100%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+}
+
+#success-message {
+    animation: slideInDown 0.5s ease-out;
+}
+
+/* Image Upload Area */
+#upload-area {
+    transition: all 0.3s ease;
+}
+
+#upload-area:hover {
+    background-color: #e8f5e8;
+    border-color: #2e7d32;
+}
+
+#upload-area.dragover {
+    background-color: #e8f5e8;
+    border-color: #2e7d32;
+    border-width: 3px;
+}
+
+/* Pagination Button */
+#pagination-container button {
+    transition: all 0.3s ease;
+}
+
+#pagination-container button:hover:not(:disabled) {
+    transform: scale(1.1);
+}
+
+#pagination-container button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Badge Styles */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.badge-success {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.badge-warning {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.badge-danger {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.badge-info {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+/* Card Shadow Levels */
+.shadow-sm {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.shadow {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.shadow-md {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.shadow-xl {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.shadow-2xl {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Form Input Focus */
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #2e7d32;
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+}
+
+/* Disabled State */
+button:disabled,
+input:disabled,
+textarea:disabled,
+select:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Text Selection */
+::selection {
+    background-color: #2e7d32;
+    color: white;
+}
+
+::-moz-selection {
+    background-color: #2e7d32;
+    color: white;
+}
+
+/* Responsive Utilities */
+@media (max-width: 768px) {
+    .hero-bg {
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .progress-circle {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .progress-circle::before {
+        width: 75px;
+        height: 75px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    body {
+        background: white;
+    }
+    
+    .shadow,
+    .shadow-lg,
+    .shadow-xl {
+        box-shadow: none !important;
+    }
+}
+
+/* Accessibility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Focus Visible for Keyboard Navigation */
+*:focus-visible {
+    outline: 2px solid #2e7d32;
+    outline-offset: 2px;
+}
+
+/* Transition Utilities */
+.transition-all {
+    transition: all 0.3s ease;
+}
+
+.transition-colors {
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.transition-transform {
+    transition: transform 0.3s ease;
+}
+
+/* Hover Scale Effect */
+.hover-scale:hover {
+    transform: scale(1.05);
+}
+
+/* Backdrop Blur */
+.backdrop-blur {
+    backdrop-filter: blur(8px);
+}
+
+/* Glass Effect */
+.glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Custom Alert Box */
+.alert {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.alert-success {
+    background-color: #d1fae5;
+    color: #065f46;
+    border-left: 4px solid #10b981;
+}
+
+.alert-warning {
+    background-color: #fef3c7;
+    color: #92400e;
+    border-left: 4px solid #f59e0b;
+}
+
+.alert-danger {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border-left: 4px solid #ef4444;
+}
+
+.alert-info {
+    background-color: #dbeafe;
+    color: #1e40af;
+    border-left: 4px solid #3b82f6;
+}
